@@ -8,8 +8,12 @@ export default class YearList extends Component {
         super(props)
 
         this.state = {
-           data: ''
+            data: [],
         }
+    }
+
+    onChange(e){
+
     }
 
     componentDidMount(){
@@ -18,7 +22,7 @@ export default class YearList extends Component {
 
     async getData(){
         const res = await getYearBalance(Number(this.props.match.params.year) || 2018)
-        this.setState({data: res})
+        this.setState({data:res})
     }
 
 
@@ -39,10 +43,11 @@ export default class YearList extends Component {
                         <div className="col-md-3">
                             {data.map((d,i) => {
                             return <YearCard
+                                    onChange={this.onChange}
                                     budget={d.budget}
                                     balance={d.balance}
                                     year={year}
-                                    month={i}
+                                    month={i+1}
                                     key={i}
                                     />
                             })}    

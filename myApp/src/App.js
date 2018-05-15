@@ -7,6 +7,8 @@ import RegisterPage from './components/Auth/RegisterPage';
 import LoginPage from './components/Auth/LoginPage';
 import YearList from './components/YearBalance/YearList'
 import MonthList from './components/MonthBalance/MonthList'
+import AddExpense from './components/MonthBalance/AddExpense';
+import ExpenseCard from './components/MonthBalance/ExpenseCard';
 
 class App extends Component {
     constructor(props) {
@@ -28,8 +30,10 @@ class App extends Component {
                     <Route exact path="/" component={YearList} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
-                    <Route path="/plan/:year" component={YearList} />
+                    <Route path="/plan/:year/:month/expense" component={AddExpense} />
+                    <Route path="/plan/expense/:expenseId"/>
                     <Route path="/plan/:year/:month" component={MonthList} />
+                    <Route path="/plan/:year" component={YearList} />       
                 </Switch>
             </div>
         );
