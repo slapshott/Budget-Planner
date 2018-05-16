@@ -36,7 +36,7 @@ export default class MonthList extends Component {
         const res = await updateValues(year, month, income, budget)
         
         if(!res.success){
-            toastr.error('Error occured')
+            toastr.error('Error ocurred')
             return
         }
         if(res.success){

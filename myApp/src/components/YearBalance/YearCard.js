@@ -23,7 +23,7 @@ export default function YearCard({balance, budget, year, month, onChange}){
                         disabled="" 
                         value={balance} />
                     <div className="space-top">
-                    <Link to={`/plan/${year}/${month}`}>Details</Link>
+                    <Link to={`/plan/${year}/${month}`} className="btn btn-secondary">Details</Link>
                     </div>
                 </blockquote>
             </div>

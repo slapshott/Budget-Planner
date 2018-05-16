@@ -35,7 +35,8 @@ class AddExpense extends Component {
         const res = await addExpense(year,month,date,name,category,amount)
 
         if(!res.success){
-            toastr.error('Error ocurred')
+            console.log(res)
+            toastr.error(res.errors.date)
             return
         }
 

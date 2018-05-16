@@ -15,7 +15,7 @@ class ExpenseCard extends Component{
         const res = await deleteExpense(expenseId)
         
         if(!res.success){
-            toastr.error('Error occured')
+            toastr.error(res.errors.date)
             return
         }
         if(res.success){
