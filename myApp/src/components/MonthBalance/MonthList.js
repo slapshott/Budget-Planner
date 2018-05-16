@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getMonthBalance, updateValues } from '../../api/remote';
 import { Link } from 'react-router-dom';
 import  ExpenseCard  from './ExpenseCard';
+import  toastr  from 'toastr'
 
 export default class MonthList extends Component {
 
@@ -33,9 +34,13 @@ export default class MonthList extends Component {
         let month = this.props.match.params.month 
 
         const res = await updateValues(year, month, income, budget)
+        
         if(!res.success){
-            console.log(res.errors)
+            toastr.error('Error occured')
             return
+        }
+        if(res.success){
+            toastr.success('Income and Budget updated successfully')
         }
         this.getData()
     }

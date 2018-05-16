@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import '../node_modules/toastr/build/toastr.min.css'
 
 ReactDOM.render((
     <Router>

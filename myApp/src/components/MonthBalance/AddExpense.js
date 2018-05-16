@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { addExpense } from '../../api/remote'
 import { withRouter } from 'react-router-dom'
+import  toastr  from 'toastr'
 
 class AddExpense extends Component {
     constructor(props){
@@ -32,7 +33,14 @@ class AddExpense extends Component {
         let amount = Number(this.state.cost)
 
         const res = await addExpense(year,month,date,name,category,amount)
+
+        if(!res.success){
+            toastr.error('Error ocurred')
+            return
+        }
+
         if(res.success){
+            toastr.success('Expense added successfully!')
             this.props.history.push(`/plan/${year}/${month}`)
         }
     }

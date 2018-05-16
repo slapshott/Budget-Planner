@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { deleteExpense } from '../../api/remote'
+import  toastr  from 'toastr'
 
 class ExpenseCard extends Component{
 
     constructor(props){
         super(props)
-        
-        this.removeElement = this.removeElement.bind(this)
+        this.removeExpense = this.removeExpense.bind(this)
     }
 
-    async removeElement(){
+    async removeExpense(){
         let {year, month, expenseId, expenses} = this.props
         const res = await deleteExpense(expenseId)
-        console.log(res)
+        
+        if(!res.success){
+            toastr.error('Error occured')
+            return
+        }
         if(res.success){
-            this.props.history.push(`/plan/${year}/${month}`)
+            toastr.success('Expense deleted successfully!')
+            this.props.history.push(`/plan/${year}`)
         }
     }
     
@@ -29,7 +34,7 @@ class ExpenseCard extends Component{
                 <td>{amount.toFixed(2)}</td>
                 <td>{date}-{month}-{year}</td>
                 <td>
-                    <button onClick={this.removeElement} className="btn btn-secondary">Delete</button>
+                    <button onClick={this.removeExpense} className="btn btn-secondary">Delete</button>
                 </td>
             </tr>
         )
